@@ -1,0 +1,86 @@
+[
+{
+  "model": "catalog.category",
+  "pk": 1,
+  "fields": {
+    "name": "фрукты",
+    "descriptions": "вкусные"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "овощи",
+    "descriptions": "полезные"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 3,
+  "fields": {
+    "name": "ягода",
+    "descriptions": "сладкаие"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 4,
+  "fields": {
+    "name": "орехи",
+    "descriptions": "питательные"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 1,
+  "fields": {
+    "name": "апельсин",
+    "descriptions": "оранжевый",
+    "picture": "",
+    "category": 1,
+    "price": 100,
+    "date_of_creation": null,
+    "last_modified_date": null
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 2,
+  "fields": {
+    "name": "огурец",
+    "descriptions": "зеленый",
+    "picture": "",
+    "category": 2,
+    "price": 30,
+    "date_of_creation": null,
+    "last_modified_date": null
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 3,
+  "fields": {
+    "name": "малина",
+    "descriptions": "любят дети",
+    "picture": "",
+    "category": 3,
+    "price": 200,
+    "date_of_creation": null,
+    "last_modified_date": null
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 4,
+  "fields": {
+    "name": "миндаль",
+    "descriptions": "вкусный",
+    "picture": "",
+    "category": 4,
+    "price": 300,
+    "date_of_creation": null,
+    "last_modified_date": null
+  }
+}
+]
