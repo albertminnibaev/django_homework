@@ -7,7 +7,7 @@
                     <h4 class="my-0 font-weight-normal">Добавить продукт</h4>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="" class="form-floating">
+                    <form method="post" action="" enctype="multipart/form-data" class="form-floating">
                         {% csrf_token %}
                         <div class="mb-3">
                             <input type="text" name="name" class="form-control" id="name" placeholder="наименование" required>

@@ -16,8 +16,9 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="card-footer">
 <!--                        <button type="button" class="btn btn-sm btn-outline-secondary">купить</button>-->
-                        <a class="btn btn-outline-secondary" href="{% url 'catalog:product_update' object.pk %}">изменить</a>
-                        <a class="btn btn-outline-danger float-right" href="{% url 'catalog:product_delete' object.pk %}">удалить</a>
+                        <a class="btn btn-outline-warning" href="{% url 'catalog:product_update' object.pk %}">изменить</a>
+                        <a class="btn btn-outline-success" href="{% url 'catalog:product_edit' object.pk %}">просмотр</a>
+                        <a class="btn btn-outline-danger" href="{% url 'catalog:product_delete' object.pk %}">удалить</a>
                     </div>
                 </div>
             </div>
