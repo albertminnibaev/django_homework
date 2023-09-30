@@ -3,7 +3,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
 from catalog.forms import ProductForm
-from catalog.models import Category, Product
+from catalog.models import Category, Product, Version
 
 
 class IndexView(TemplateView):
@@ -40,6 +40,7 @@ class ProductListView(ListView):
         category_item = Category.objects.get(pk=self.kwargs.get('pk'))
         context_data["category_pk"] = category_item.pk
         context_data["title"] = f'Продукты категории {category_item.name}'
+        context_data['version'] = Version.objects.all()
 
         return context_data
 

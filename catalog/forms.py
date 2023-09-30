@@ -1,6 +1,6 @@
 from django import forms
 
-from catalog.models import Product
+from catalog.models import Product, Version
 
 
 class ProductForm(forms.ModelForm):
@@ -26,6 +26,4 @@ class ProductForm(forms.ModelForm):
                 raise forms.ValidationError('Ошибка, нельзя использовать слова казино, криптовалюта, крипта, биржа, '
                                             'дешево, бесплатно, обман, полиция, радар')
         return cleaned_data
-
-
 
