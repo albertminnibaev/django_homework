@@ -27,6 +27,8 @@
                            href="{% url 'catalog:product_edit' object.pk %}">просмотр</a>
                         <a class="btn btn-outline-danger"
                            href="{% url 'catalog:product_delete' object.pk %}">удалить</a>
+                        <a class="btn btn-outline-success"
+                           href="{% url 'catalog:version' object.pk %}">версии продукта</a>
                     </div>
                 </div>
             </div>

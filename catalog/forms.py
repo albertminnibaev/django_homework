@@ -3,7 +3,15 @@ from django import forms
 from catalog.models import Product, Version
 
 
-class ProductForm(forms.ModelForm):
+class StyleFromMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            #field.help_text = 'Some help text for field'
+
+
+class ProductForm(StyleFromMixin, forms.ModelForm):
 
     class Meta:
         model = Product
@@ -27,3 +35,9 @@ class ProductForm(forms.ModelForm):
                                             'дешево, бесплатно, обман, полиция, радар')
         return cleaned_data
 
+
+class VersionForm(StyleFromMixin, forms.ModelForm):
+
+    class Meta:
+        model = Version
+        fields = '__all__'

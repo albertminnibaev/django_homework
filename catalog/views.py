@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
-from catalog.forms import ProductForm
+from catalog.forms import ProductForm, VersionForm
 from catalog.models import Category, Product, Version
 
 
@@ -65,7 +65,6 @@ class ProductDetailView(DetailView):
     model = Product
 
 
-
 class ProductDeleteView(DeleteView):
     model = Product
 
@@ -90,6 +89,50 @@ def contact(request):
         "title": 'Контакты'
     }
     return render(request, 'catalog/contacts.html', context)
+
+
+class VersionListView(ListView):
+    model = Version
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(product=self.kwargs.get('pk'))
+
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+
+        product = Product.objects.get(pk=self.kwargs.get('pk'))
+        context_data["product_pk"] = product.pk
+        context_data["title"] = f'Версии продукта {product.name}'
+
+        return context_data
+
+
+class VersionCreateView(CreateView):
+    model = Version
+    form_class = VersionForm
+
+    def get_success_url(self):
+        return reverse('catalog:version', args=[self.object.product.pk])
+
+
+class VersionUpdateView(UpdateView):
+    model = Version
+    form_class = VersionForm
+
+    def get_success_url(self):
+        return reverse('catalog:version', args=[self.object.product.pk])
+
+
+class VersionDetailView(DetailView):
+    model = Version
+
+
+class VersionDeleteView(DeleteView):
+    model = Version
+
 
 
 # def index(request):

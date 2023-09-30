@@ -1,0 +1,31 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-5">
+        <a href="{% url 'catalog:version_create' %}" class="btn btn-primary">добавить версию продукта</a>
+    </div>
+    {% for object in object_list %}
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body">
+                <p class="card-text">{{ object.number }}</p>
+                <p class="card-text">{{ object.name }} </p>
+                <p class="card-text">{{ object.sign }} </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="card-footer">
+                        <a class="btn btn-outline-warning"
+                           href="{% url 'catalog:version_update' object.pk %}">изменить</a>
+                        <a class="btn btn-outline-success"
+                           href="{% url 'catalog:version_edit' object.pk %}">просмотр</a>
+                        <a class="btn btn-outline-danger"
+                           href="{% url 'catalog:version_delete' object.pk %}">удалить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
