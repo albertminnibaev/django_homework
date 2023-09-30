@@ -7,17 +7,28 @@
     <div class="col-md-4">
         <div class="card mb-4 box-shadow">
             <img class="card-img-top" src="{{ object.picture | mymedia }}" alt="Card image cap">
-<!--                 src="/media/{{ object.picture }}"-->
-<!--                    <img src="{{ object.picture | mymedia }}" alt="products">-->
+            <!--                 src="/media/{{ object.picture }}"-->
+            <!--                    <img src="{{ object.picture | mymedia }}" alt="products">-->
             <div class="card-body">
                 <p class="card-text">{{ object.name | title }}</p>
                 <p class="card-text">{{ object.descriptions | slice:":100" }}</p>
                 <p class="card-text">{{ object.price }} руб.</p>
+                {% for item in version %}
+                {% if item.product == object and item.sign %}
+                <p class="card-text">Активная версия продукта: {{ item.number }}</p>
+                {% endif %}
+                {% endfor %}
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="card-footer">
-<!--                        <button type="button" class="btn btn-sm btn-outline-secondary">купить</button>-->
-                        <a class="btn btn-outline-secondary" href="{% url 'catalog:product_update' object.pk %}">изменить</a>
-                        <a class="btn btn-outline-danger float-right" href="{% url 'catalog:product_delete' object.pk %}">удалить</a>
+                        <!--                        <button type="button" class="btn btn-sm btn-outline-secondary">купить</button>-->
+                        <a class="btn btn-outline-warning"
+                           href="{% url 'catalog:product_update' object.pk %}">изменить</a>
+                        <a class="btn btn-outline-success"
+                           href="{% url 'catalog:product_edit' object.pk %}">просмотр</a>
+                        <a class="btn btn-outline-danger"
+                           href="{% url 'catalog:product_delete' object.pk %}">удалить</a>
+                        <a class="btn btn-outline-success"
+                           href="{% url 'catalog:version' object.pk %}">версии продукта</a>
                     </div>
                 </div>
             </div>

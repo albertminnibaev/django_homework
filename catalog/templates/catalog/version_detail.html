@@ -1,0 +1,41 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="col-12">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Информация о версии {{ object.name }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>номер версии</td>
+                            <td>{{ object.number }}</td>
+                        </tr>
+                        <tr>
+                            <td>название версии</td>
+                            <td>{{ object.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>признак текущей версии</td>
+                            <td>{{ object.sign }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        {{ object.body }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'catalog:version' object.product.pk %}" class="btn btn-sm btn-outline-success">назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
