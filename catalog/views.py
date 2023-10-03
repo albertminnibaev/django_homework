@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
@@ -25,12 +27,12 @@ class CategoryListView(ListView):
     }
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(category=self.kwargs.get('pk'))
+        queryset = queryset.filter(category=self.kwargs.get('pk'), owner=self.request.user)
 
         return queryset
 
@@ -45,14 +47,21 @@ class ProductListView(ListView):
         return context_data
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     #fields = ('name', 'descriptions', 'picture', 'category', 'price', 'date_of_creation', 'last_modified_date')
     success_url = reverse_lazy('catalog:categories')
 
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.owner = self.request.user
+        self.object.save()
 
-class ProductUpdateView(UpdateView):
+        return super().form_valid(form)
+
+
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     #fields = ('name', 'descriptions', 'picture', 'category', 'price', 'last_modified_date')
@@ -61,11 +70,11 @@ class ProductUpdateView(UpdateView):
         return reverse('catalog:products', args=[self.object.category.pk])
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
 
     def get_success_url(self):

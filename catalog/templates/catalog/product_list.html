@@ -13,6 +13,7 @@
                 <p class="card-text">{{ object.name | title }}</p>
                 <p class="card-text">{{ object.descriptions | slice:":100" }}</p>
                 <p class="card-text">{{ object.price }} руб.</p>
+                <p class="card-text">{{ object.owner | default:"Нет владельца" }}</p>
                 {% for item in version %}
                 {% if item.product == object and item.sign %}
                 <p class="card-text">Активная версия продукта: {{ item.number }}</p>
