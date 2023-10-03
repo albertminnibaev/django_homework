@@ -33,19 +33,6 @@
 },
 {
   "model": "catalog.product",
-  "pk": 1,
-  "fields": {
-    "name": "апельсин",
-    "descriptions": "оранжевый",
-    "picture": "",
-    "category": 1,
-    "price": 100,
-    "date_of_creation": null,
-    "last_modified_date": null
-  }
-},
-{
-  "model": "catalog.product",
   "pk": 2,
   "fields": {
     "name": "огурец",
@@ -81,6 +68,128 @@
     "price": 300,
     "date_of_creation": null,
     "last_modified_date": null
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 5,
+  "fields": {
+    "name": "клубника",
+    "descriptions": "Очень вкусная",
+    "picture": "products/clubnica.jpg",
+    "category": 3,
+    "price": 250,
+    "date_of_creation": "2023-09-10",
+    "last_modified_date": "2023-09-10"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 6,
+  "fields": {
+    "name": "картофель",
+    "descriptions": "полезный",
+    "picture": "",
+    "category": 2,
+    "price": 50,
+    "date_of_creation": "2023-09-10",
+    "last_modified_date": "2023-09-10"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 10,
+  "fields": {
+    "name": "морковь",
+    "descriptions": "морковь",
+    "picture": "",
+    "category": 2,
+    "price": 10,
+    "date_of_creation": "2023-09-28",
+    "last_modified_date": "2023-09-28"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 12,
+  "fields": {
+    "name": "лимон",
+    "descriptions": "желтый",
+    "picture": "",
+    "category": 1,
+    "price": 25,
+    "date_of_creation": "2023-09-28",
+    "last_modified_date": "2023-09-28"
+  }
+},
+{
+  "model": "catalog.version",
+  "pk": 1,
+  "fields": {
+    "product": 3,
+    "number": 1,
+    "name": "Первая",
+    "sign": false
+  }
+},
+{
+  "model": "catalog.version",
+  "pk": 2,
+  "fields": {
+    "product": 3,
+    "number": 2,
+    "name": "вторая",
+    "sign": true
+  }
+},
+{
+  "model": "catalog.version",
+  "pk": 3,
+  "fields": {
+    "product": 6,
+    "number": 1,
+    "name": "Первая",
+    "sign": true
+  }
+},
+{
+  "model": "catalog.version",
+  "pk": 4,
+  "fields": {
+    "product": 5,
+    "number": 3,
+    "name": "третья",
+    "sign": true
+  }
+},
+{
+  "model": "catalog.version",
+  "pk": 5,
+  "fields": {
+    "product": 3,
+    "number": 3,
+    "name": "Третья",
+    "sign": false
+  }
+},
+{
+  "model": "catalog.version",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "number": 1,
+    "name": "G",
+    "sign": false
+  }
+},
+{
+  "model": "catalog.version",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "number": 2,
+    "name": "2",
+    "sign": true
   }
 }
 ]
