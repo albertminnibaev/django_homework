@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, T
 
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Category, Product, Version
+from catalog.services import get_categories_cache
 
 
 class IndexView(TemplateView):
@@ -16,7 +17,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        context_data["object_list"] = Category.objects.all()[:3]
+        context_data["object_list"] = get_categories_cache()[:3]
         return context_data
 
 

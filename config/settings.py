@@ -149,6 +149,7 @@ EMAIL_HOST_USER = 'albert.minnibaeff@yandex.ru'
 EMAIL_HOST_PASSWORD = PASSWORD_MAIL
 EMAIL_USE_SSL = True
 
+CACHE_ENABLED = True
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
