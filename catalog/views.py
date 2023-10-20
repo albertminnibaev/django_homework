@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
-from catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm, ProductFormStaff
 from catalog.models import Category, Product, Version
 from catalog.services import get_categories_cache
 
@@ -64,11 +65,24 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
-    form_class = ProductForm
+    #form_class = ProductForm
     #fields = ('name', 'descriptions', 'picture', 'category', 'price', 'last_modified_date')
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user:
+            raise Http404
+        return self.object
 
     def get_success_url(self):
         return reverse('catalog:products', args=[self.object.category.pk])
+
+    def get_form_class(self):
+        if self.request.user.is_staff and not self.request.user.is_superuser:
+            # если пользователь is_staff и не суперюзер, то выводится форма только с полем статуса рассылки
+            return ProductFormStaff
+        else:
+            return ProductForm
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):

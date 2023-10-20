@@ -9,7 +9,7 @@ class Record(models.Model):
     content = models.TextField(**NULLABLE, verbose_name='Содержание')
     preview = models.ImageField(upload_to='records/', **NULLABLE, verbose_name='изображение')
     created_at = models.DateField(**NULLABLE, verbose_name='дата создания')
-    sign = models.BooleanField(default=True, verbose_name='признак публикации')
+    sign = models.BooleanField(default=False, verbose_name='признак публикации')
     quantity = models.IntegerField(default=0, verbose_name='количество просмотров')
 
     def __str__(self):
@@ -18,3 +18,9 @@ class Record(models.Model):
     class Meta:
         verbose_name = 'запись'
         verbose_name_plural = 'записи'
+        # permissions = [
+        #     (
+        #         'set_sign',
+        #         'Can publish posts'
+        #     )
+        # ]
