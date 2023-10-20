@@ -79,7 +79,8 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form_class(self):
         if self.request.user.is_staff and not self.request.user.is_superuser:
-            # если пользователь is_staff и не суперюзер, то выводится форма только с полем статуса рассылки
+            # если пользователь is_staff и не суперюзер, то выводится форма с полями описание, категория и
+            # признак публикации
             return ProductFormStaff
         else:
             return ProductForm
