@@ -35,6 +35,21 @@ class ProductForm(StyleFromMixin, forms.ModelForm):
         return cleaned_data
 
 
+class ProductFormStaff(StyleFromMixin, forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('descriptions', 'category', 'is_published',)
+
+    def clean_descriptions(self):
+        cleaned_data = self.cleaned_data.get('descriptions')
+        words = ('казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар')
+        for item in words:
+            if item in cleaned_data:
+                raise forms.ValidationError('Ошибка, нельзя использовать слова казино, криптовалюта, крипта, биржа, '
+                                            'дешево, бесплатно, обман, полиция, радар')
+        return cleaned_data
+
+
 class VersionForm(StyleFromMixin, forms.ModelForm):
     class Meta:
         model = Version
